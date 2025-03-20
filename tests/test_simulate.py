@@ -1,6 +1,9 @@
 import pytest
 import numpy as np
 import pandas as pd
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.simulate import simulate_ez_diffusion
 
 # Test 1: Check if simulate_ez_diffusion runs without errors and returns a DataFrame
