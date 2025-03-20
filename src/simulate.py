@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import argparse
 
+#Disclaimer: Code in this file was produced with the assistance of ChatGPT and ClaudeAI
+
 # Function to simulate RTs and accuracy using the EZ diffusion model
 def simulate_ez_diffusion(N, seed=None):
     """

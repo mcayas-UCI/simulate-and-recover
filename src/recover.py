@@ -3,6 +3,8 @@ import pandas as pd
 import sys
 from scipy.optimize import minimize
 
+#Disclaimer: Code in this file was produced with the assistance of ChatGPT and ClaudeAI
+
 def recover_parameters(data):
     """
     Recover parameters (a, v, t) using a fitting procedure.

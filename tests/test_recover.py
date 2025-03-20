@@ -5,6 +5,9 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.recover import recover_parameters
+
+#Disclaimer: Code in this file was produced with the assistance of ChatGPT and ClaudeAI
+
 # Test 1: Check if recover_parameters works with valid input
 def test_recover_parameters_valid_input():
     # Simulate some data for testing

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Disclaimer: Code in this file was produced with the assistance of ChatGPT and ClaudeAI
+
 # Get the absolute path to the project root
 PROJECT_ROOT=$(pwd)
 

@@ -6,6 +6,8 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.simulate import simulate_ez_diffusion
 
+#Disclaimer: Code in this file was produced with the assistance of ChatGPT and ClaudeAI
+
 # Test 1: Check if simulate_ez_diffusion runs without errors and returns a DataFrame
 def test_simulate_ez_diffusion_basic():
     N = 100
