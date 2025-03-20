@@ -1,1 +1,12 @@
 # simulate-and-recover
+
+The simulate-and-recover exercise tested the ability to estimate key parameters of the EZ diffusion model—boundary separation (a), drift rate (v), and non-decision time (t)—by first generating synthetic reaction time (RT) and accuracy data and then attempting to recover the original parameters from that data. This process was repeated across different sample sizes (N = 10, 40, 4000) to examine how well the recovery process performed under different conditions. The results showed that parameter recovery accuracy improved as sample size increased. With a small sample size (N = 10), the recovered parameters were highly variable and often deviated significantly from the true values. This was expected since a limited number of trials resulted in insufficient data, making parameter estimation unstable. For a moderate sample size (N = 40), the recovered parameters were more stable and closer to the true values, though there was still some noticeable variability. In contrast, when the sample size was large (N = 4000), the recovered parameters were highly accurate, with minimal deviation from the original values and significantly lower variance.
+
+One of the key takeaways from this exercise is the importance of sample size in cognitive modeling. If an experiment collects only a small number of trials per participant, the estimated parameters may be unreliable, leading to misleading conclusions. However, as the number of trials increases, estimates stabilize and become much more reflective of the true underlying cognitive processes. The results also suggest that simplistic parameter recovery methods may not always be robust when dealing with noisy data.
+
+Overall, the simulate-and-recover exercise highlights the strengths and limitations of parameter estimation in the EZ diffusion model. While the model effectively captures key decision-making processes, reliable recovery of its parameters requires sufficiently large datasets. When working with limited data, researchers must be cautious in interpreting estimated parameters, as they may contain significant errors due to random noise and optimization challenges. This underscores the importance of statistical rigor and proper experimental design in cognitive modeling. Ultimately, the exercise reinforces a fundamental principle in cognitive science and psychology: data quality and quantity play a crucial role in drawing valid conclusions about human behavior.
+
+
+
+
+
