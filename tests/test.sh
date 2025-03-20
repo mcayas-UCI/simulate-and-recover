@@ -1,7 +1,18 @@
 #!/bin/bash
 
-# Navigate to the directory where the tests are located (adjust the path if needed)
-cd "$(dirname "$0")"
+echo "Running test_simulate.py..."
+python test_simulate.py
+simulate_exit_code=$?
 
-# Run pytest to execute the tests in the test_simulate.py file
-pytest tests/test_simulate.py --maxfail=1 --disable-warnings -q
+echo -e "\nRunning test_recover.py..."
+python test_recover.py
+recover_exit_code=$?
+
+# Check if any tests failed
+if [ $simulate_exit_code -ne 0 ] || [ $recover_exit_code -ne 0 ]; then
+    echo -e "\nOne or more tests failed!"
+    exit 1
+else
+    echo -e "\nAll tests passed successfully!"
+    exit 0
+fi
