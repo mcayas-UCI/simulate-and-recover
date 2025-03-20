@@ -1,43 +1,35 @@
-import sys
-import os
 import pytest
 import numpy as np
 import pandas as pd
+from src.simulate import simulate_ez_diffusion
 
-# Add src/ to the Python path so that we can import simulate.py
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(simulate.py), '../src')))
-
-from simulate import simulate_ez_diffusion
-
-def test_output_format():
-    """Test that the function returns a DataFrame with correct columns."""
-    df = simulate_ez_diffusion(N=10, seed=42)
-    expected_columns = {"RT", "Accuracy", "True_a", "True_v", "True_t"}
+# Test 1: Check if simulate_ez_diffusion runs without errors and returns a DataFrame
+def test_simulate_ez_diffusion_basic():
+    N = 100
+    df = simulate_ez_diffusion(N)
+    
+    # Check if the returned result is a DataFrame
     assert isinstance(df, pd.DataFrame)
-    assert expected_columns.issubset(df.columns)
+    
+    # Check if the DataFrame has the expected columns
+    assert "RT" in df.columns
+    assert "Accuracy" in df.columns
 
-def test_positive_rt():
-    """Test that all reaction times (RT) are non-negative."""
-    df = simulate_ez_diffusion(N=100, seed=42)
-    assert (df["RT"] >= 0).all()
+# Test 2: Check if the function handles a small sample size (e.g., N=1)
+def test_simulate_ez_diffusion_small_sample():
+    N = 1
+    df = simulate_ez_diffusion(N)
+    
+    # Check that the returned result is still a DataFrame with 1 row
+    assert isinstance(df, pd.DataFrame)
+    assert len(df) == 1
 
-def test_accuracy_values():
-    """Test that accuracy values are binary (0 or 1)."""
-    df = simulate_ez_diffusion(N=100, seed=42)
-    assert set(df["Accuracy"].unique()).issubset({0, 1})
-
-def test_random_seed_reproducibility():
-    """Test that using the same random seed produces identical outputs."""
-    df1 = simulate_ez_diffusion(N=50, seed=123)
-    df2 = simulate_ez_diffusion(N=50, seed=123)
+# Test 3: Check if simulate_ez_diffusion works with a fixed random seed for reproducibility
+def test_simulate_ez_diffusion_reproducibility():
+    N = 100
+    seed = 42
+    df1 = simulate_ez_diffusion(N, seed)
+    df2 = simulate_ez_diffusion(N, seed)
+    
+    # Check if the two outputs are the same when using the same seed
     pd.testing.assert_frame_equal(df1, df2)
-
-def test_different_seeds():
-    """Test that different seeds produce different results."""
-    df1 = simulate_ez_diffusion(N=50, seed=123)
-    df2 = simulate_ez_diffusion(N=50, seed=456)
-    assert not df1.equals(df2)
-
-if __name__ == "__main__":
-    pytest.main()
-

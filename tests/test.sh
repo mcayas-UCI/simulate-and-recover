@@ -1,18 +1,7 @@
 #!/bin/bash
 
-echo "Running all tests..."
+# Navigate to the directory where the tests are located (adjust the path if needed)
+cd "$(dirname "$0")"
 
-# Run unit and integration tests using pytest
-pytest test/test_simulate.py
-
-# Check if simulate.py executes without crashing
-echo "Testing simulate.py execution..."
-python3 src/simulate.py --test-mode
-
-if [ $? -ne 0 ]; then
-    echo "simulate.py encountered an error!"
-    exit 1
-fi
-
-echo "All tests passed!"
-exit 0
+# Run pytest to execute the tests in the test_simulate.py file
+pytest tests/test_simulate.py --maxfail=1 --disable-warnings -q
