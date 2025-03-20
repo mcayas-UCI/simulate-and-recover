@@ -12,9 +12,15 @@ mkdir -p figures
 
 echo "Starting simulation and recovery process..."
 
-# Step 1: Run simulation
-echo "Running simulation..."
-python $PROJECT_ROOT/simulate.py
+# Configuration parameters
+N=3000  # Number of iterations/samples
+SIMULATION_OUTPUT="results/simulation_data.npz"  # Output file for simulation results
+RECOVERY_OUTPUT="results/recovered_parameters.csv"  # Output file for recovery results
+SEED=42  # Random seed for reproducibility
+
+# Step 1: Run simulation with required arguments
+echo "Running simulation with N=$N..."
+python $PROJECT_ROOT/simulate.py -N $N -o $SIMULATION_OUTPUT -s $SEED
 simulate_exit_code=$?
 
 if [ $simulate_exit_code -ne 0 ]; then
@@ -22,11 +28,12 @@ if [ $simulate_exit_code -ne 0 ]; then
     exit 1
 fi
 
-echo "Simulation completed successfully."
+echo "Simulation completed successfully. Results saved to $OUTPUT"
 
 # Step 2: Run recovery
+# Assuming recover.py may need the simulation output as input
 echo "Running parameter recovery..."
-python $PROJECT_ROOT/recover.py
+python $PROJECT_ROOT/recover.py $SIMULATION_OUTPUT $RECOVERY_OUTPUT
 recover_exit_code=$?
 
 if [ $recover_exit_code -ne 0 ]; then
